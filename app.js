@@ -54,7 +54,7 @@ function renderGrid(){
  $("#workGrid").innerHTML=projects.length?projects.map((p,i)=>{
    const cover = coverUrl(p.cover);
    const meta = [p.category||"", p.subtitle||""].filter(Boolean).join(" · ");
-   return `<article class="work-card" tabindex="0" role="button" data-id="${esc(p.id)}" aria-label="查看 ${esc(p.title)}"><div class="work-image"><img decoding="async" src="${esc(cover)}" data-fallback="${esc(PLACEHOLDER)}" alt="${esc(p.title)}"><span class="play-indicator">↗</span></div><div class="work-meta"><div><h3>${esc(p.title)}</h3><p>${esc(meta)}</p></div><span class="work-index">${String(i+1).padStart(2,"0")}</span></div></article>`;
+   return `<article class="work-card" tabindex="0" role="button" data-id="${esc(p.id)}" aria-label="查看 ${esc(p.title)}"><div class="work-image" style="display:block;position:relative;width:100%;height:auto;aspect-ratio:16/9;overflow:hidden"><img style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center" decoding="async" src="${esc(cover)}" data-fallback="${esc(PLACEHOLDER)}" alt="${esc(p.title)}"><span class="play-indicator">↗</span></div><div class="work-meta"><div><h3>${esc(p.title)}</h3><p>${esc(meta)}</p></div><span class="work-index">${String(i+1).padStart(2,"0")}</span></div></article>`;
  }).join(""):`<div class="empty-state">${state.filter==="ALL"?"目前没有展示中的作品。":"这个分类暂时没有作品。"}</div>`;
 
  $("#workGrid").querySelectorAll(".work-image img").forEach(img=>{
