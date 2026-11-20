@@ -48,25 +48,14 @@ function renderFilters(){
 }
 function renderGrid(){
  const projects=visibleProjects();
- const allPublished=state.projects.filter(p=>p.published!==false).sort((a,b)=>(a.order||0)-(b.order||0));
- $("#workCount").textContent=String(allPublished.length).padStart(2,"0");
- const featured=allPublished[0];
- const heroVisual=$("#heroVisual");
- if(featured && heroVisual){
-   const heroCover=coverUrl(featured.cover);
-   heroVisual.querySelector(".hero-image-placeholder").innerHTML=`<img src="${esc(heroCover)}" alt="${esc(featured.title)}" loading="eager"><span>STORIES IN MOTION</span>`;
-   $("#heroCaption").textContent=featured.title||"精选影像";
-   const heroImg=heroVisual.querySelector("img");
-   heroImg.addEventListener("error",()=>{heroImg.src=PLACEHOLDER},{once:true});
-   heroVisual.style.cursor="pointer";
-   heroVisual.setAttribute("role","button");heroVisual.setAttribute("tabindex","0");
-   heroVisual.onclick=()=>openProject(featured.id);
-   heroVisual.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openProject(featured.id)}};
- }
+ const published=state.projects.filter(p=>p.published!==false);
+ const countEl=$("#workCount");
+ if(countEl) countEl.textContent=String(published.length).padStart(2,"0");
  $("#workGrid").innerHTML=projects.length?projects.map((p,i)=>{
    const cover = coverUrl(p.cover);
-   return `<article class="work-card" tabindex="0" role="button" data-id="${esc(p.id)}" aria-label="查看 ${esc(p.title)}"><div class="work-image"><img decoding="async" src="${esc(cover)}" data-fallback="${esc(PLACEHOLDER)}" alt="${esc(p.title)}"><span class="play-indicator">↗</span></div><div class="work-meta"><div><h3>${esc(p.title)}</h3><p>${esc(p.category||"PROJECT")}</p></div><span class="work-index">${String(i+1).padStart(2,"0")}</span></div></article>`;
- }).join(""):`<div class="empty-state">目前没有展示中的作品。</div>`;
+   const meta = [p.category||"", p.subtitle||""].filter(Boolean).join(" · ");
+   return `<article class="work-card" tabindex="0" role="button" data-id="${esc(p.id)}" aria-label="查看 ${esc(p.title)}"><div class="work-image"><img decoding="async" src="${esc(cover)}" data-fallback="${esc(PLACEHOLDER)}" alt="${esc(p.title)}"><span class="play-indicator">↗</span></div><div class="work-meta"><div><h3>${esc(p.title)}</h3><p>${esc(meta)}</p></div><span class="work-index">${String(i+1).padStart(2,"0")}</span></div></article>`;
+ }).join(""):`<div class="empty-state">${state.filter==="ALL"?"目前没有展示中的作品。":"这个分类暂时没有作品。"}</div>`;
 
  $("#workGrid").querySelectorAll(".work-image img").forEach(img=>{
    img.addEventListener("error", function onErr(){
@@ -169,9 +158,32 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 
 async function init(){
  $("#year").textContent=new Date().getFullYear();
- try{const r=await fetch("projects.json",{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);state.projects=await r.json();state.projects=state.projects.filter(p=>p.published!==false);renderFilters();renderGrid();}
- catch(e){$("#workGrid").innerHTML='<div class="empty-state">作品列表暂时无法载入。请稍后刷新。</div>';}
- try{const r=await fetch("site-settings.json",{cache:"no-store"});if(r.ok){const s=await r.json();if(s.heroIntro)$("#heroIntro").textContent=s.heroIntro;if(s.aboutText)$("#aboutText").textContent=s.aboutText;if(s.contactText)$("#contactText").textContent=s.contactText;if(s.email){$("#contactChannel").hidden=false;$("#contactEmail").textContent=s.email;$("#contactEmail").innerHTML=`<a href="mailto:${esc(s.email)}">${esc(s.email)}</a>`}if(Array.isArray(s.skills))$("#skills").innerHTML=s.skills.map(x=>`<span class="skill">${esc(x)}</span>`).join("")}}
- catch(e){}
+ try{
+   const r=await fetch("projects.json",{cache:"no-store"});
+   if(!r.ok)throw new Error("HTTP "+r.status);
+   state.projects=await r.json();
+   renderFilters();renderGrid();
+ }catch(e){$("#workGrid").innerHTML='<div class="empty-state">作品列表暂时无法载入。请通过网站服务器预览，或检查 projects.json。</div>';}
+ try{
+   const r=await fetch("site-settings.json",{cache:"no-store"});
+   if(!r.ok)return;
+   const s=await r.json();
+   const setText=(selector,value)=>{const el=$(selector);if(el&&value!==undefined&&value!==null)el.textContent=value;};
+   setText("#heroIntro",s.heroIntro);
+   setText("#aboutTitle",s.aboutTitle||"关于我");
+   setText("#aboutText",s.aboutText);
+   setText("#aboutNote",s.aboutNote);
+   setText("#contactTitle",s.contactTitle||"联系合作");
+   setText("#contactText",s.contactText);
+   setText("#footerName",s.footerName||"鱼肠 YuChang");
+   if(Array.isArray(s.skills))$("#skills").innerHTML=s.skills.map(x=>`<span class="skill">${esc(x)}</span>`).join("");
+   if(s.email){
+     $("#contactChannel").hidden=false;
+     $("#contactEmail").innerHTML=`<a href="mailto:${esc(s.email)}">${esc(s.email)}</a>`;
+     $("#contactFallback").href=`mailto:${esc(s.email)}`;
+     $("#contactFallback").textContent="发送邮件 ↗";
+     $("#contactFallback").hidden=false;
+   }
+ }catch(e){/* 使用页面内置默认内容 */}
 }
 init();
