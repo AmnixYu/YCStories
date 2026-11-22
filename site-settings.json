@@ -1,13 +1,41 @@
 {
-  "heroIntro": "我想讲述有质感的好故事，AI 让我脑子里的故事得以视觉化地呈现。",
-  "aboutText": "我想讲述有质感的好故事。AI 让我脑子里的故事得以视觉化地呈现。",
-  "contactText": "欢迎有趣的创作想法与合作。",
-  "email": "",
+  "heroKicker": "YU CHANG / AI FILM DIRECTOR",
+  "heroTitle": "好故事的质感\n源于有灵魂的角色",
+  "heroCaption": "CINEMA · CHARACTER · STORY",
+  "heroImage": "assets/hero-yuchang.png",
+  "heroIntro": "专注于 AI 影像与系列短剧创作，关注影视化的视觉表达、人物塑造与类型化叙事。致力于将故事与 AI 技术结合，探索新一代影像创作和内容叙事的更多可能。",
+  "aboutTitle": "关于我",
+  "aboutText": "你好，我是鱼肠YuChang",
+  "aboutNote": "让想象，成为可以看见的故事。\n我是一名 AI 影像导演与故事创作者。\n我相信，影像的魅力不只来自画面的精美，更来自故事、人物与情绪所构建的真实感。\n我喜欢有张力的故事，也喜欢有辨识度的视觉表达。我希望每一部作品都不只是技术的展示，而是一次完整的影像创作。\n从故事构思、人物设定、视觉开发，到镜头设计、AI 视频生成与后期制作，我关注创作的每一个环节，尝试以人物塑造和叙事为优先去完成作品，而不只是生成画面。\n\n我想讲述有质感的好故事，探索 AI 时代影像表达的更多可能。\n\n这也是我持续创作的原因。",
+  "contactTitle": "联系合作",
+  "contactText": "欢迎联系合作，请注明来意",
+  "footerName": "鱼肠 YuChang",
   "skills": [
-    "故事与角色",
-    "视觉开发",
-    "AI 视频生成",
-    "分镜设计",
+    "策划",
+    "编剧",
+    "配音",
+    "AI导演",
+    "AI音乐",
     "剪辑与后期"
+  ],
+  "contactMethods": [
+    {
+      "name": "E-mail",
+      "value": "AmnixStudio@gmail.com",
+      "url": "mailto:AmnixStudio@gmail.com",
+      "icon": "email"
+    },
+    {
+      "name": "微信",
+      "value": "AmnixStudio",
+      "url": "",
+      "icon": "wechat"
+    },
+    {
+      "name": "抖音",
+      "value": "鱼肠YuChang",
+      "url": "https://www.douyin.com/user/MS4wLjABAAAAS9Pu0zGB5pdq_g4Mpl88ClWdHNOU0STcjxDrHgguqHnmBVlqblJFsu8Kea8uTSA1",
+      "icon": "douyin"
+    }
   ]
 }
