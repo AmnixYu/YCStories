@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=thumbnail-16x9-final">
+  <link rel="stylesheet" href="styles.css?v=contact-icons-visible-20261122">
 
   <style>
     #workGrid .work-card .work-image{width:100%!important;height:auto!important;aspect-ratio:16/9!important;overflow:hidden!important;position:relative!important}
@@ -26,19 +26,42 @@
   </header>
 
   <main>
+    <section class="hero" aria-label="创作者首页展示">
+      <div class="hero-scene" aria-hidden="true"><img class="hero-image" src="assets/hero-yuchang.png" alt=""></div>
+      <div class="hero-copy">
+        <p class="hero-kicker"><span></span> YU CHANG / VISUAL CREATOR</p>
+        <h1>把想象，变成<br>看得见的故事。</h1>
+        <p class="hero-caption">AI FILMMAKING&nbsp; · &nbsp;VISUAL STORYTELLING</p>
+        <a class="hero-scroll" href="#works">向下探索 <span>↓</span></a>
+      </div>
+      <span class="hero-index">01 — 作品与创作</span>
+    </section>
     <section class="intro-band" aria-label="创作者简介">
       <p id="heroIntro">我想讲述有质感的好故事，AI 让我脑海里的故事得以视觉化地呈现。</p>
       <a class="intro-contact" href="#contact">合作与联系 <span>↗</span></a>
     </section>
 
     <section class="works-section" id="works">
-      <div class="section-heading"><h1>作品</h1><span class="work-count" id="workCount"></span></div>
+      <div class="section-heading section-heading--works">
+        <div class="section-heading-copy">
+          <p class="section-kicker">SELECTED WORKS</p>
+          <h2 class="section-title">作品</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </div>
+        <span class="work-count" id="workCount"></span>
+      </div>
       <div class="filter-row" id="filters" aria-label="作品分类"></div>
       <div class="work-grid" id="workGrid"><div class="loading">作品载入中…</div></div>
     </section>
 
     <section class="about-section" id="about">
-      <div class="section-heading about-heading"><h2 id="aboutTitle">关于我</h2></div>
+      <div class="section-heading about-heading">
+        <div class="section-heading-copy">
+          <p class="section-kicker">ABOUT THE CREATOR</p>
+          <h2 class="section-title" id="aboutTitle">关于我</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </div>
+      </div>
       <div class="about-layout">
         <div class="about-main"><p id="aboutText">我想讲述有质感的好故事。AI 让我脑海里的故事得以视觉化地呈现。</p><p class="about-note" id="aboutNote"></p></div>
         <div class="about-side"><span class="field-label">创作方向</span><div class="skills" id="skills"></div></div>
@@ -46,11 +69,15 @@
     </section>
 
     <section class="contact-section" id="contact">
-      <div class="contact-heading"><h2 id="contactTitle">联系合作</h2><p id="contactText">欢迎有趣的创作想法与合作。</p></div>
-      <div class="contact-details">
-        <div class="contact-channel" id="contactChannel" hidden><span>EMAIL</span><strong id="contactEmail"></strong></div>
-        <a class="contact-link" href="mailto:" id="contactFallback" hidden>与我联系 <span>↗</span></a>
+      <div class="contact-heading">
+        <div class="section-heading-copy">
+          <p class="section-kicker">CONTACT / COLLABORATION</p>
+          <h2 class="section-title" id="contactTitle">联系合作</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </div>
+        <p id="contactText">欢迎有趣的创作想法与合作。</p>
       </div>
+      <div class="contact-details" id="contactMethods"></div>
     </section>
   </main>
 
@@ -67,6 +94,6 @@
       </div>
     </section>
   </div>
-  <script src="app.js?v=thumbnail-16x9-final"></script>
+  <script src="app.js?v=contact-icons-visible-20261122"></script>
 </body>
 </html>
